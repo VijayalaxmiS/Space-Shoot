@@ -4,41 +4,32 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float playerSpeed = 5.0f;
-
-    //public GameControl gameController;
-    public GameObject bulletPrefab;
-    public float reloadTime = 0.5f; // Player can fire a bullet every half second 
-    private float elapsedTime = 0;
-    // public KeyCode moveLeft;
-    //public KeyCode moveRight;
-
-    // Update is called once per frame
+    public float speed = 5.0f;
+    public float min_X, max_X;
+ 
     void Update()
     {
-        /*
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            Vector3 direction = new Vector3(horizontal, 0, 0);
-            gameObject.transform.Translate(direction.normalized * Time.deltaTime * speed); */
-
-        elapsedTime += Time.deltaTime; // Keeping track of time for bullet firing 
-                                       // Move the player left and right 
-        float xMovement = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
-        float xPosition = Mathf.Clamp(xMovement, -7f, 7f); // Keep ship on screen 
-        transform.Translate(xPosition, 0f, 0f);
-        // Spacebar fires. The default InputManager settings call this "Jump" 
-        // Only happens if enough time has elapsed since last firing. 
-        if (Input.GetButtonDown("Jump") && elapsedTime > reloadTime)
+        MovePlayer();
+        }
+    void MovePlayer()
+    {
+        if(Input.GetAxisRaw("Horizontal") > 0f)
         {
-            // Instantiate the bullet 1.2 units in front of the player 
-            // and in the foreground at z=-5 
-            Vector3 spawnPos = transform.position;
-            spawnPos += new Vector3(0, 1.2f, 0);
-            Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-            elapsedTime = 0f; // Reset bullet firing timer 
+            Vector3 temp = transform.position;
+            temp.x += speed * Time.deltaTime;
+            if(temp.x > max_X)
+            temp.x = max_X;
+            transform.position = temp;
 
-
+        } else if (Input.GetAxisRaw("Horizontal") < 0f)
+        {
+            Vector3 temp = transform.position;
+            temp.x -= speed * Time.deltaTime;
+            if (temp.x < min_X)
+                temp.x = min_X;
+            transform.position = temp;
 
         }
     }
+    
 }
