@@ -4,12 +4,33 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+   
     public float speed = 5f;
     public float deactivate_Timer = 3f;
-    // Start is called before the first frame update
+    [HideInInspector]
+    public bool is_EnemyBullet = false;
+    public bool is_PlayerBullet = false;
+    public bool is_PlayerBullet1 = false;
+    public bool is_PlayerBullet2 = false;
+ private AudioSource explosionSound;
+
+    void Awake()
+    {
+       //explosionSound = GetComponent<AudioSource>();
+    }
     void Start()
     {
-      Invoke("DeactivateGameObject", deactivate_Timer);
+        if (is_EnemyBullet)
+            speed *= -1f;
+
+        if (is_PlayerBullet)
+            speed *= 1f;
+        if (is_PlayerBullet1)
+            speed *= 1f;
+        if (is_PlayerBullet2)
+            speed *= 1f;
+        Invoke("DeactivateGameObject", deactivate_Timer);
+     //   Invoke("SpawnBullets", bulletspawn_Timer);
     }
 
     // Update is called once per frame
@@ -22,9 +43,27 @@ public class BulletScript : MonoBehaviour
         Vector3 temp = transform.position;
         temp.y += speed * Time.deltaTime;
         transform.position = temp;
+
+       
     }
     void DeactivateGameObject()
     {
+        //explosionSound.Play();
         gameObject.SetActive(false);
+       
+    }
+
+    void OnTriggerEnter2D (Collider2D target)
+    {
+        if(target.gameObject.tag == "Bullet" || target.gameObject.tag == "Enemy")
+        {
+
+            gameObject.SetActive(false);
+            Destroy(target.gameObject);
+            
+        }
+        
+
     }
 }
+    
