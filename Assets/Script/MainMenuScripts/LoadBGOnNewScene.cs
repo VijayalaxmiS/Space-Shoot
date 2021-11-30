@@ -24,7 +24,7 @@ public class LoadBGOnNewScene : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);  // Coninue playing BG music on next scene
     }
 
     // Update is called once per frame

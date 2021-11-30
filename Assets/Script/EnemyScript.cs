@@ -11,11 +11,12 @@ public class EnemyScript : MonoBehaviour
     private bool canMove = true;
     public float bound_Y = -10f;
     public Transform attack_Point;
-   // private AudioSource explosionSound;
+    private Animator anim;
+   private AudioSource explosionSound;
 
     void Awake()
     {
-     // explosionSound = GetComponent<AudioSource>();
+     explosionSound = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -49,6 +50,26 @@ public class EnemyScript : MonoBehaviour
         if (canShoot)
             Invoke("StartShooting", bulletspawn_Timer);
     }
+    void TurnOffGameObject()
+    {
+        gameObject.SetActive(false);
+    }
+    void OnTriggerEnter2D(Collider2D target)
+    {
+        if(target.tag == "Bulet")
 
+        {
+            explosionSound.Play();
+            canMove = false;
+
+            if(canShoot)
+            {
+                canShoot = false;
+                CancelInvoke("StartShooting");
+            }
+            Invoke("TurnOffGameObject", 3f);
+           // anim.Play("Destroy");
+        }
+    }
     }
 
