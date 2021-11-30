@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        ScoreText.scoreValue = 0;
         buttontap.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -59,6 +60,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     public void QuitGame()
     {
+        ScoreText.scoreValue = 0;
         buttontap.Play();
         Application.Quit();
     }

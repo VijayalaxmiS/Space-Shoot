@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
     public float current_Attack_Timer;
     private bool canAttack;
     public bool pcanShoot;
-    //private AudioSource shootSound;
+   
 
     void Awake()
     {
-        //shootSound = GetComponent<AudioSource>();
+        
 
     }
     void Start()
@@ -33,11 +33,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
-        // Attack();
+      
     }
     void MovePlayer()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0f)
+        
+        if (Input.GetAxisRaw("Horizontal") > 0f)  // Moving player along +ve X axis
         {
             Vector3 temp = transform.position;
             temp.x += speed * Time.deltaTime;
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
             transform.position = temp;
 
         }
-        else if (Input.GetAxisRaw("Horizontal") < 0f)
+        else if (Input.GetAxisRaw("Horizontal") < 0f) //// Moving player along -ve X axis
         {
             Vector3 temp = transform.position;
             temp.x -= speed * Time.deltaTime;
@@ -58,7 +59,8 @@ public class Player : MonoBehaviour
     }
 
     void Attack()
-    {//Spawn bullets automatically with some delay
+    {   //Spawn Player bullets automatically with some delay
+
         GameObject pbullet = Instantiate(player_Bullet, attack_Point.position, Quaternion.identity);
         pbullet.GetComponent<BulletScript>().is_PlayerBullet = true;
 
@@ -68,29 +70,12 @@ public class Player : MonoBehaviour
         GameObject pbullet2 = Instantiate(player_Bullet, attack_Point2.position, Quaternion.identity);
         pbullet2.GetComponent<BulletScript>().is_PlayerBullet2 = true;
 
-        // shootSound.Play();
+       
 
         if (pcanShoot)
             Invoke("Attack", current_Attack_Timer);
 
 
-        /* attack_Timer += Time.deltaTime;
-           if(attack_Timer > current_Attack_Timer)
-           {
-               canAttack = true;
-           }
-
-           if(Input.GetKeyDown(KeyCode.Space))
-           {
-               if(canAttack)
-               {
-                   canAttack = false;
-                   attack_Timer = 0;
-                   Instantiate(player_Bullet, attack_Point.position, Quaternion.identity);
-                   Instantiate(player_Bullet, attack_Point1.position, Quaternion.identity);
-                   Instantiate(player_Bullet, attack_Point2.position, Quaternion.identity);
-               }
-           }*/
     }
 
 }

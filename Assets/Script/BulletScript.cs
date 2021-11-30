@@ -48,6 +48,7 @@ public class BulletScript : MonoBehaviour
     }
     void DeactivateGameObject()
     {
+        
         //explosionSound.Play();
         gameObject.SetActive(false);
        
@@ -57,10 +58,10 @@ public class BulletScript : MonoBehaviour
     {
         if(target.gameObject.tag == "Bullet" || target.gameObject.tag == "Enemy")
         {
-
+           
             gameObject.SetActive(false);
             Destroy(target.gameObject);
-            
+            ScoreText.scoreValue += 1;
         }
         
 

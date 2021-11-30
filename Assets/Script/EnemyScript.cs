@@ -32,16 +32,16 @@ public class EnemyScript : MonoBehaviour
     {
         if (canMove)
         {
-            Vector3 temp = transform.position;
+            Vector3 temp = transform.position; //Moving enemies in -ve y direction   
             temp.y -= speed * Time.deltaTime;
             transform.position = temp;
 
-            if (temp.y < bound_Y)
+            if (temp.y < bound_Y)      //disabling enemy objects once it is out of the screen
                 gameObject.SetActive(false);
         }
     }
     void StartShooting()
-    {
+    { //Enemy Bullet Instantiation
         GameObject bullet = Instantiate(bullet_Prefab, attack_Point.position,Quaternion.identity);
         
         bullet.GetComponent<BulletScript>().is_EnemyBullet = true;
@@ -49,10 +49,6 @@ public class EnemyScript : MonoBehaviour
         if (canShoot)
             Invoke("StartShooting", bulletspawn_Timer);
     }
-
-   
-
-   
 
     }
 
