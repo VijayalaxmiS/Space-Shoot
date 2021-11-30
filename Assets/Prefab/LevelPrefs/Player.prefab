@@ -136,7 +136,7 @@ MonoBehaviour:
   attack_Point1: {fileID: 1055418652171908223}
   attack_Point2: {fileID: 1055418652595849096}
   attack_Timer: 0.35
-  current_Attack_Timer: 1
+  current_Attack_Timer: 0.5
   pcanShoot: 1
 --- !u!50 &1055418652581417430
 Rigidbody2D:

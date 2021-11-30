@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject bullet_Prefab;
     public float bulletspawn_Timer;
     private bool canMove = true;
-    public float bound_Y = -11f;
+    public float bound_Y = -10f;
     public Transform attack_Point;
    // private AudioSource explosionSound;
 

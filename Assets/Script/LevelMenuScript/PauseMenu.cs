@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+   
     private AudioSource buttontap;
     bool isPaused;
     public GameObject pauseScreen;
+    
+   
     // Start is called before the first frame update
 
     void Awake()
@@ -45,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        
         buttontap.Play();
         isPaused = true;
         pauseScreen.SetActive(true);

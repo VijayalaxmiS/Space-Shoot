@@ -176,6 +176,6 @@ MonoBehaviour:
   canShoot: 1
   bullet_Prefab: {fileID: 6722597788549386164, guid: b474ef92efa53f949b557d0eb34e209c,
     type: 3}
-  bulletspawn_Timer: 1
+  bulletspawn_Timer: 0.5
   bound_Y: -11
   attack_Point: {fileID: 1711328293715340810}
