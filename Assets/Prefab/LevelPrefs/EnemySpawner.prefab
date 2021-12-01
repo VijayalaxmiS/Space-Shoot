@@ -47,4 +47,6 @@ MonoBehaviour:
   max_X: 6
   enemyPrefab: {fileID: 1711328295143866781, guid: 21100ee731962774ca9f4e91464aa1fa,
     type: 3}
+  enemyPrefab1: {fileID: 5942008686312845435, guid: 6ae61ac6860152f4eae6968a801c99c6,
+    type: 3}
   timer: 1

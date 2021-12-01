@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour
     public bool is_PlayerBullet = false;
     public bool is_PlayerBullet1 = false;
     public bool is_PlayerBullet2 = false;
- private AudioSource explosionSound;
+// private AudioSource explosionSound;
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class BulletScript : MonoBehaviour
     void DeactivateGameObject()
     {
         
-        //explosionSound.Play();
+        //
         gameObject.SetActive(false);
        
     }
@@ -58,12 +58,20 @@ public class BulletScript : MonoBehaviour
     {
         if(target.gameObject.tag == "Bullet" || target.gameObject.tag == "Enemy")
         {
-           
+
             gameObject.SetActive(false);
             Destroy(target.gameObject);
-            ScoreText.scoreValue += 1;
+        //    ScoreText.scoreValue += 1;
         }
-        
+
+        if (target.gameObject.tag == "Enemy")
+        {
+
+           ScoreText.scoreValue += 1;
+        }
+
+
+
 
     }
 }

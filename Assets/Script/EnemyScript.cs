@@ -12,14 +12,17 @@ public class EnemyScript : MonoBehaviour
     public float bound_Y = -10f;
     public Transform attack_Point;
     private Animator anim;
-   private AudioSource explosionSound;
 
+  //  public GameObject enemyExplosion;
+  
     void Awake()
     {
-     explosionSound = GetComponent<AudioSource>();
+     
     }
     void Start()
     {
+       // this.GetComponent<EnemyScript>().enemyExplosion = (GameObject)GameObject.Find("Explosion");
+
         if (canShoot)
             Invoke("StartShooting", bulletspawn_Timer);
     }
@@ -56,10 +59,11 @@ public class EnemyScript : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D target)
     {
-        if(target.tag == "Bulet")
+        if (target.gameObject.tag == "Bullet" || target.gameObject.tag == "Enemy")
 
         {
-            explosionSound.Play();
+            
+           // explosionSound.Play();
             canMove = false;
 
             if(canShoot)
@@ -68,6 +72,8 @@ public class EnemyScript : MonoBehaviour
                 CancelInvoke("StartShooting");
             }
             Invoke("TurnOffGameObject", 3f);
+           // enemyExplosion.transform.position = target.transform.position;
+           // enemyExplosion.GetComponent<ParticleSystem>().Play();
            // anim.Play("Destroy");
         }
     }
